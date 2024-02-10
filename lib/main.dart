@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:valentine/home_page.dart';
 import 'package:valentine/themes/default_theme.dart';
 
@@ -11,10 +12,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Valentine',
       theme: defaultTheme,
-      home: const HomePage(),
+      routerConfig: GoRouter(
+        routes: <GoRoute>[
+          GoRoute(
+            path: '/',
+            builder: (BuildContext context, GoRouterState state) =>
+                const HomePage(),
+          ),
+        ],
+      ),
     );
   }
 }
