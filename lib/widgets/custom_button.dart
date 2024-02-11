@@ -40,8 +40,10 @@ class _CustomButtonState extends State<CustomButton> {
         onPressed: widget.onPressed,
         child: Text(
           widget.label,
+          textAlign: TextAlign.justify,
           style: context.theme.textTheme.bodyLarge!.copyWith(
             color: widget.textColor,
+            fontSize: 0.2 * widget.size.width,
           ),
         ),
       ),
