@@ -15,7 +15,7 @@ class CustomButton extends StatefulWidget {
   final VoidCallback? onPressed;
   final Color backgroundColor;
   final Color textColor;
-  final Size size;
+  final Size? size;
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -24,27 +24,24 @@ class CustomButton extends StatefulWidget {
 class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.size.width,
-      height: widget.size.height,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: widget.backgroundColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6),
-          ),
-          elevation: 0,
-          shadowColor: Colors.transparent,
-          splashFactory: NoSplash.splashFactory,
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.all(18),
+        backgroundColor: widget.backgroundColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
         ),
-        onPressed: widget.onPressed,
-        child: Text(
-          widget.label,
-          textAlign: TextAlign.justify,
-          style: context.theme.textTheme.bodyLarge!.copyWith(
-            color: widget.textColor,
-            fontSize: 0.2 * widget.size.width,
-          ),
+        elevation: 0,
+        shadowColor: Colors.transparent,
+        splashFactory: NoSplash.splashFactory,
+      ),
+      onPressed: widget.onPressed,
+      child: Text(
+        widget.label,
+        textAlign: TextAlign.justify,
+        style: context.theme.textTheme.bodyLarge!.copyWith(
+          color: widget.textColor,
+          fontSize: 0.2 * (widget.size?.width ?? 1),
         ),
       ),
     );

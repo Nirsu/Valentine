@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/rendering/viewport_offset.dart';
 import 'package:valentine/themes/theme_extension.dart';
 import 'package:valentine/widgets/custom_button.dart';
 
@@ -13,7 +12,26 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final ScrollController _scrollControllerVertical = ScrollController();
   final ScrollController _scrollControllerHorizontal = ScrollController();
+  final List<String> _phrases = <String>[
+    'No',
+    'Are you sure?',
+    'Really sure?',
+    'Think again!',
+    'Last chance!',
+    'Surely not?',
+    'You might regret this!',
+    'Give it another thought!',
+    'Are you absolutely certain?',
+    'This could be a mistake!',
+    'Have a heart!',
+    "Don't be so cold!",
+    'Change of heart?',
+    "Wouldn't you reconsider?",
+    'Is that your final answer?',
+    "You're breaking my heart ;(",
+  ];
 
+  int _phraseIndex = 0;
   bool _hasAccepted = false;
   Size _acceptButtonSize = const Size(100, 50);
 
@@ -28,8 +46,10 @@ class _HomePageState extends State<HomePage> {
       _acceptButtonSize.width + 50,
       _acceptButtonSize.height + 50,
     );
+
     setState(() {
       _acceptButtonSize = tmpSize;
+      _phraseIndex = (_phraseIndex + 1) % _phrases.length;
     });
   }
 
@@ -74,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                             const SizedBox(width: 8),
                             CustomButton(
                               onPressed: _onDecline,
-                              label: 'No',
+                              label: _phrases[_phraseIndex],
                               backgroundColor: Colors.red,
                             ),
                           ],
